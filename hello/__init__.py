@@ -1,6 +1,6 @@
 from flask import Flask
 from markupsafe import escape
-
+from flask import request
 
 def create_app():
 
@@ -23,6 +23,11 @@ def create_app():
     def show_post(post_id):
         # Show the post with the given id, the id is an integer
         return 'Post %d' % post_id
+
+    @app.route('/greeting')
+    def greeting():
+        name = request.args['name']
+        return "Kia Ora " + name
 
     @app.route('/path/<path:subpath>')
     def show_subpath(subpath):
